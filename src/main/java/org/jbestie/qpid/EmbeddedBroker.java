@@ -40,6 +40,8 @@ public class EmbeddedBroker {
         int port = 5672;
         System.setProperty("qpid.amqp_port", String.valueOf(port));
         System.setProperty("qpid.jdbc.password", "xxxx");
+        System.setProperty("qpid.keystore_pass", "xxxx");
+        System.setProperty("qpid.keystore_path", "path-to-keystore");
         return attributes;
     }
 

@@ -105,6 +105,50 @@
             "protocols": [
                 "HTTP"
             ]
+        },
+        {
+            "id" : "6a329be5-605c-4dac-b7d3-2a7d68a81786",
+            "name" : "ssl",
+            "type" : "AMQP",
+            "authenticationProvider" : "plain",
+            "keyStore" : "postgres",
+            "needClientAuth" : false,
+            "port" : "5555",
+            "protocols" : [ "AMQP_0_10", "AMQP_0_8", "AMQP_0_9", "AMQP_0_9_1", "AMQP_1_0" ],
+            "transports" : [ "SSL" ],
+            "wantClientAuth" : false,
+            "lastUpdatedBy" : "guest",
+            "lastUpdatedTime" : 1621867162965,
+            "createdBy" : "guest",
+            "createdTime" : 1621864632439,
+            "virtualhostaliases" : [ {
+                "id" : "62c29b69-8e3c-49c3-a447-f00a392445d2",
+                "name" : "defaultAlias",
+                "type" : "defaultAlias",
+                "durable" : true,
+                "lastUpdatedBy" : "guest",
+                "lastUpdatedTime" : 1621864632461,
+                "createdBy" : "guest",
+                "createdTime" : 1621864632461
+            }, {
+                "id" : "d7ef41e5-b6df-4106-9748-cc56231684e8",
+                "name" : "hostnameAlias",
+                "type" : "hostnameAlias",
+                "durable" : true,
+                "lastUpdatedBy" : "guest",
+                "lastUpdatedTime" : 1621864632462,
+                "createdBy" : "guest",
+                "createdTime" : 1621864632462
+            }, {
+                "id" : "62b1de51-5b29-461b-afa1-47c4bc10a785",
+                "name" : "nameAlias",
+                "type" : "nameAlias",
+                "durable" : true,
+                "lastUpdatedBy" : "guest",
+                "lastUpdatedTime" : 1621864632460,
+                "createdBy" : "guest",
+                "createdTime" : 1621864632460
+            } ]
         }
     ],
     "virtualhostnodes": [
@@ -126,6 +170,21 @@
             "virtualHostInitialConfiguration" : "{\n  \"connectionPoolType\" : \"BONECP\",\n  \"modelVersion\" : \"8.0\",\n  \"type\" : \"JDBC\",\n  \"password\" : \"${qpid.jdbc.password}\",\n  \"name\" : \"postgres\",\n  \"context\" : { },\n  \"connectionUrl\" : \"jdbc:postgresql://localhost:5432/postgres\",\n  \"username\" : \"postgres\",\n  \"exchanges\" : [ {\n    \"name\" : \"amq.fanout\",\n    \"type\" : \"fanout\"\n  }, {\n    \"name\" : \"amq.topic\",\n    \"type\" : \"topic\"\n  }, {\n    \"name\" : \"amq.direct\",\n    \"type\" : \"direct\"\n  }, {\n    \"name\" : \"amq.match\",\n    \"type\" : \"headers\"\n  } ],\n  \"queues\" : [ {\n    \"durable\" : true,\n    \"alternateBinding\" : null,\n    \"name\" : \"testqueue\",\n    \"type\" : \"standard\",\n    \"holdOnPublishEnabled\" : false\n  } ]\n}"
         }
     ],
+    "keystores" : [{
+        "id" : "3e495cdb-afe4-4bf5-91db-62c6ba717477",
+        "name" : "postgres",
+        "type" : "FileKeyStore",
+        "certificateAlias" : "postgres",
+        "keyManagerFactoryAlgorithm" : "SunX509",
+        "keyStoreType" : "jks",
+        "password" : "${qpid.keystore_pass}",
+        "storeUrl" : "${qpid.keystore_path}",
+        "useHostNameMatching" : true,
+        "lastUpdatedBy" : "guest",
+        "lastUpdatedTime" : 1621867150620,
+        "createdBy" : "guest",
+        "createdTime" : 1621867150620
+    }],
     "plugins": [
         {
             "type": "MANAGEMENT-HTTP",
