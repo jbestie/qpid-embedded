@@ -1,93 +1,135 @@
 {
-    "name": "${broker.name}",
-    "modelVersion": "7.0",
-    "authenticationproviders" : [ {
-        "name" : "plain",
-        "type" : "Plain",
-        "users" : [ {
-            "name" : "guest",
-            "type" : "managed",
-            "password" : "guest"
-        } ]
-    } ],
-    "brokerloggers" : [ {
-        "name" : "logfile",
-        "type" : "File",
-        "fileName" : "${qpid.work_dir}${file.separator}log${file.separator}qpid.log",
-        "brokerloginclusionrules" : [ {
-            "name" : "Root",
-            "type" : "NameAndLevel",
-            "level" : "WARN",
-            "loggerName" : "ROOT"
-        }, {
-            "name" : "Qpid",
-            "type" : "NameAndLevel",
-            "level" : "INFO",
-            "loggerName" : "org.apache.qpid.*"
-        }, {
-            "name" : "Operational",
-            "type" : "NameAndLevel",
-            "level" : "INFO",
-            "loggerName" : "qpid.message.*"
-        }, {
-            "name" : "Statistics",
-            "type" : "NameAndLevel",
-            "level" : "INFO",
-            "loggerName" : "qpid.statistics.*"
-        } ]
-    }, {
-        "name" : "memory",
-        "type" : "Memory",
-        "brokerloginclusionrules" : [ {
-            "name" : "Root",
-            "type" : "NameAndLevel",
-            "level" : "WARN",
-            "loggerName" : "ROOT"
-        }, {
-            "name" : "Qpid",
-            "type" : "NameAndLevel",
-            "level" : "INFO",
-            "loggerName" : "org.apache.qpid.*"
-        }, {
-            "name" : "Operational",
-            "type" : "NameAndLevel",
-            "level" : "INFO",
-            "loggerName" : "qpid.message.*"
-        }, {
-            "name" : "Statistics",
-            "type" : "NameAndLevel",
-            "level" : "INFO",
-            "loggerName" : "qpid.statistics.*"
-        } ]
-    } ],
-    "ports" : [  {
-        "name" : "AMQP",
-        "port" : "${qpid.amqp_port}",
-        "authenticationProvider" : "plain",
-        "virtualhostaliases" : [ {
-            "name" : "nameAlias",
-            "type" : "nameAlias"
-        }, {
-            "name" : "defaultAlias",
-            "type" : "defaultAlias"
-        }, {
-            "name" : "hostnameAlias",
-            "type" : "hostnameAlias"
-        } ]
-    }, {
-        "name" : "HTTP",
-        "port" : "${qpid.http_port}",
-        "authenticationProvider" : "plain",
-        "protocols" : [ "HTTP" ]
-    }],
-    "virtualhostnodes" : [ {
-        "name" : "default",
-        "type" : "JSON",
-        "defaultVirtualHostNode" : "true",
-        "virtualHostInitialConfiguration" : "${qpid.initial_config_virtualhost_config}"
-    }],
-    "plugins" : [ {
-        "type" : "MANAGEMENT-HTTP",
-        "name" : "httpManagement"
-    } ]
+    "name": "Embedded Broker",
+    "modelVersion": "8.0",
+    "authenticationproviders": [
+        {
+            "secureOnlyMechanisms": [],
+            "name": "plain",
+            "type": "Plain",
+            "users": [
+                {
+                    "name": "guest",
+                    "type": "managed",
+                    "password": "guest"
+                }
+            ]
+        }
+    ],
+    "brokerloggers": [
+        {
+            "name": "logfile",
+            "type": "File",
+            "fileName": "${qpid.work_dir}${file.separator}log${file.separator}qpid.log",
+            "brokerloginclusionrules": [
+                {
+                    "name": "Root",
+                    "type": "NameAndLevel",
+                    "level": "WARN",
+                    "loggerName": "ROOT"
+                },
+                {
+                    "name": "Qpid",
+                    "type": "NameAndLevel",
+                    "level": "INFO",
+                    "loggerName": "org.apache.qpid.*"
+                },
+                {
+                    "name": "Operational",
+                    "type": "NameAndLevel",
+                    "level": "INFO",
+                    "loggerName": "qpid.message.*"
+                },
+                {
+                    "name": "Statistics",
+                    "type": "NameAndLevel",
+                    "level": "INFO",
+                    "loggerName": "qpid.statistics.*"
+                }
+            ]
+        },
+        {
+            "name": "memory",
+            "type": "Memory",
+            "brokerloginclusionrules": [
+                {
+                    "name": "Root",
+                    "type": "NameAndLevel",
+                    "level": "WARN",
+                    "loggerName": "ROOT"
+                },
+                {
+                    "name": "Qpid",
+                    "type": "NameAndLevel",
+                    "level": "INFO",
+                    "loggerName": "org.apache.qpid.*"
+                },
+                {
+                    "name": "Operational",
+                    "type": "NameAndLevel",
+                    "level": "INFO",
+                    "loggerName": "qpid.message.*"
+                },
+                {
+                    "name": "Statistics",
+                    "type": "NameAndLevel",
+                    "level": "INFO",
+                    "loggerName": "qpid.statistics.*"
+                }
+            ]
+        }
+    ],
+    "ports": [
+        {
+            "name": "AMQP",
+            "port": "${qpid.amqp_port}",
+            "authenticationProvider": "plain",
+            "virtualhostaliases": [
+                {
+                    "name": "nameAlias",
+                    "type": "nameAlias"
+                },
+                {
+                    "name": "defaultAlias",
+                    "type": "defaultAlias"
+                },
+                {
+                    "name": "hostnameAlias",
+                    "type": "hostnameAlias"
+                }
+            ]
+        },
+        {
+            "name": "HTTP",
+            "port": "${qpid.http_port}",
+            "authenticationProvider": "plain",
+            "protocols": [
+                "HTTP"
+            ]
+        }
+    ],
+    "virtualhostnodes": [
+        {
+            "id" : "428233b3-3f2f-4e95-8adc-0c2642a4d01a",
+            "name" : "default",
+            "type" : "JDBC",
+            "desiredState" : "ACTIVE",
+            "context" : { },
+            "connectionPoolType" : "BONECP",
+            "connectionUrl" : "jdbc:postgresql://localhost:5432/postgres",
+            "password" : "${qpid.jdbc.password}",
+            "username" : "postgres",
+            "lastUpdatedBy" : "guest",
+            "lastUpdatedTime" : 1621855835462,
+            "createdBy" : "guest",
+            "createdTime" : 1621855830137,
+            "defaultVirtualHostNode": "true",
+            "virtualHostInitialConfiguration" : "{\n  \"connectionPoolType\" : \"BONECP\",\n  \"modelVersion\" : \"8.0\",\n  \"type\" : \"JDBC\",\n  \"password\" : \"${qpid.jdbc.password}\",\n  \"name\" : \"postgres\",\n  \"context\" : { },\n  \"connectionUrl\" : \"jdbc:postgresql://localhost:5432/postgres\",\n  \"username\" : \"postgres\",\n  \"exchanges\" : [ {\n    \"name\" : \"amq.fanout\",\n    \"type\" : \"fanout\"\n  }, {\n    \"name\" : \"amq.topic\",\n    \"type\" : \"topic\"\n  }, {\n    \"name\" : \"amq.direct\",\n    \"type\" : \"direct\"\n  }, {\n    \"name\" : \"amq.match\",\n    \"type\" : \"headers\"\n  } ],\n  \"queues\" : [ {\n    \"durable\" : true,\n    \"alternateBinding\" : null,\n    \"name\" : \"testqueue\",\n    \"type\" : \"standard\",\n    \"holdOnPublishEnabled\" : false\n  } ]\n}"
+        }
+    ],
+    "plugins": [
+        {
+            "type": "MANAGEMENT-HTTP",
+            "name": "httpManagement"
+        }
+    ]
 }

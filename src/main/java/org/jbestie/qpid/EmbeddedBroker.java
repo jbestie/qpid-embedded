@@ -10,6 +10,7 @@ import java.util.Map;
 
 @Slf4j
 public class EmbeddedBroker {
+    private static final String INITIAL_CONFIGURATION = "test-initial-config.json";
 
     private final SystemLauncher qpidLauncher;
 
@@ -31,14 +32,14 @@ public class EmbeddedBroker {
 
 
     private Map<String, Object> createSystemConfig() {
+        URL initialConfig = EmbeddedBroker.class.getClassLoader().getResource(INITIAL_CONFIGURATION);
         final Map<String, Object> attributes = new HashMap<>();
-        String configFilePath = "qpid-config.json";
-        final URL initialConfig = EmbeddedBroker.class.getClassLoader().getResource(configFilePath);
         attributes.put("type", "Memory");
         attributes.put("initialConfigurationLocation", initialConfig != null ? initialConfig.toExternalForm() : null);
         attributes.put("startupLoggedToSystemOut", true);
         int port = 5672;
         System.setProperty("qpid.amqp_port", String.valueOf(port));
+        System.setProperty("qpid.jdbc.password", "xxxx");
         return attributes;
     }
 
