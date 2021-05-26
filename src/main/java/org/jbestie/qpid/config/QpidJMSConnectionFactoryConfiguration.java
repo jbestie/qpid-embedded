@@ -34,6 +34,6 @@ public class QpidJMSConnectionFactoryConfiguration {
     @Bean
     public JmsConnectionFactory jmsConnectionFactory(QpidJMSProperties properties) {
         return new QpidJMSConnectionFactoryFactory(properties)
-            .createConnectionFactory(JmsConnectionFactory.class);
+                .createConnectionFactory(JmsConnectionFactory.class);
     }
 }

@@ -32,12 +32,6 @@ public class QpidJMSProperties {
     private Boolean receiveLocalOnly;
     private Boolean receiveNoWaitLocalOnly;
 
-    private Integer port;
-    private String jdbcUsername;
-    private String jdbcPassword;
-    private String keystorePassword;
-    private String keystorePath;
-
     private final DeserializationPolicy deserializationPolicy = new DeserializationPolicy();
 
     public String getRemoteURL() {
@@ -86,46 +80,6 @@ public class QpidJMSProperties {
 
     public void setReceiveNoWaitLocalOnly(Boolean receiveNoWaitLocalOnly) {
         this.receiveNoWaitLocalOnly = receiveNoWaitLocalOnly;
-    }
-
-    public Integer getPort() {
-        return port;
-    }
-
-    public void setPort(Integer port) {
-        this.port = port;
-    }
-
-    public String getJdbcUsername() {
-        return jdbcUsername;
-    }
-
-    public void setJdbcUsername(String jdbcUsername) {
-        this.jdbcUsername = jdbcUsername;
-    }
-
-    public String getJdbcPassword() {
-        return jdbcPassword;
-    }
-
-    public void setJdbcPassword(String jdbcPassword) {
-        this.jdbcPassword = jdbcPassword;
-    }
-
-    public String getKeystorePassword() {
-        return keystorePassword;
-    }
-
-    public void setKeystorePassword(String keystorePassword) {
-        this.keystorePassword = keystorePassword;
-    }
-
-    public String getKeystorePath() {
-        return keystorePath;
-    }
-
-    public void setKeystorePath(String keystorePath) {
-        this.keystorePath = keystorePath;
     }
 
     public DeserializationPolicy getDeserializationPolicy() {

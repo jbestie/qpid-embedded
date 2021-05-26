@@ -89,7 +89,7 @@ public class QpidJMSConnectionFactoryFactory {
         } catch (Exception ex) {
             LOG.error("Exception while createing Qpid JMS Connection Factory.", ex);
             throw new IllegalStateException("Failed to create the Qpid JMS ConnectionFactory, " +
-                "make sure the client Jar is on the Classpath.", ex);
+                    "make sure the client Jar is on the Classpath.", ex);
         }
     }
 
@@ -103,7 +103,7 @@ public class QpidJMSConnectionFactoryFactory {
 
     private void configureDeserializationPolicy(QpidJMSProperties properties, JmsConnectionFactory factory) {
         JmsDefaultDeserializationPolicy deserializationPolicy =
-            (JmsDefaultDeserializationPolicy) factory.getDeserializationPolicy();
+                (JmsDefaultDeserializationPolicy) factory.getDeserializationPolicy();
 
         if (StringUtils.hasLength(properties.getDeserializationPolicy().getWhiteList())) {
             deserializationPolicy.setWhiteList(properties.getDeserializationPolicy().getWhiteList());
