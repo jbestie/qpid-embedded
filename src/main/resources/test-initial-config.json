@@ -8,9 +8,9 @@
             "type": "Plain",
             "users": [
                 {
-                    "name": "guest",
+                    "name": "${qpid.plain.username}",
                     "type": "managed",
-                    "password": "guest"
+                    "password": "${qpid.plain.password}"
                 }
             ]
         }
@@ -111,7 +111,7 @@
             "name" : "ssl",
             "type" : "AMQP",
             "authenticationProvider" : "plain",
-            "keyStore" : "postgres",
+            "keyStore" : "localhost",
             "needClientAuth" : false,
             "port" : "5555",
             "protocols" : [ "AMQP_0_10", "AMQP_0_8", "AMQP_0_9", "AMQP_0_9_1", "AMQP_1_0" ],
@@ -153,28 +153,28 @@
     ],
     "virtualhostnodes": [
         {
-            "id" : "428233b3-3f2f-4e95-8adc-0c2642a4d01a",
-            "name" : "default",
+            "id" : "ea334eaf-6734-4726-bf6d-c031cc55f11c",
+            "name" : "localhost",
             "type" : "JDBC",
             "desiredState" : "ACTIVE",
             "context" : { },
             "connectionPoolType" : "BONECP",
-            "connectionUrl" : "jdbc:postgresql://localhost:5432/postgres",
+            "connectionUrl" : "jdbc:h2:file:C:/temp/db",
             "password" : "${qpid.jdbc.password}",
-            "username" : "postgres",
+            "username" : "${qpid.jdbc.username}",
             "lastUpdatedBy" : "guest",
-            "lastUpdatedTime" : 1621855835462,
+            "lastUpdatedTime" : 1622023022178,
             "createdBy" : "guest",
-            "createdTime" : 1621855830137,
+            "createdTime" : 1622023021761,
             "defaultVirtualHostNode": "true",
-            "virtualHostInitialConfiguration" : "{\n  \"connectionPoolType\" : \"BONECP\",\n  \"modelVersion\" : \"8.0\",\n  \"type\" : \"JDBC\",\n  \"password\" : \"${qpid.jdbc.password}\",\n  \"name\" : \"postgres\",\n  \"context\" : { },\n  \"connectionUrl\" : \"jdbc:postgresql://localhost:5432/postgres\",\n  \"username\" : \"postgres\",\n  \"exchanges\" : [ {\n    \"name\" : \"amq.fanout\",\n    \"type\" : \"fanout\"\n  }, {\n    \"name\" : \"amq.topic\",\n    \"type\" : \"topic\"\n  }, {\n    \"name\" : \"amq.direct\",\n    \"type\" : \"direct\"\n  }, {\n    \"name\" : \"amq.match\",\n    \"type\" : \"headers\"\n  } ],\n  \"queues\" : [ {\n    \"durable\" : true,\n    \"alternateBinding\" : null,\n    \"name\" : \"testqueue\",\n    \"type\" : \"standard\",\n    \"holdOnPublishEnabled\" : false\n  } ]\n}"
+            "virtualHostInitialConfiguration" : "{\n  \"connectionPoolType\" : \"BONECP\",\n  \"password\" : \"${qpid.jdbc.password}\",\n  \"modelVersion\" : \"8.0\",\n  \"name\" : \"localhost\",\n  \"context\" : { },\n  \"connectionUrl\" : \"jdbc:h2:file:C:/temp/db\",\n  \"type\" : \"JDBC\",\n  \"username\" : \"${qpid.jdbc.username}\",\n  \"exchanges\" : [ {\n    \"name\" : \"amq.direct\",\n    \"type\" : \"direct\"\n  }, {\n    \"name\" : \"amq.topic\",\n    \"type\" : \"topic\"\n  }, {\n    \"name\" : \"amq.fanout\",\n    \"type\" : \"fanout\"\n  }, {\n    \"name\" : \"amq.match\",\n    \"type\" : \"headers\"\n  } ],\n  \"queues\" : [ {\n    \"durable\" : true,\n    \"name\" : \"testqueue\",\n    \"type\" : \"standard\",\n    \"holdOnPublishEnabled\" : false\n  } ]\n}"
         }
     ],
     "keystores" : [{
         "id" : "3e495cdb-afe4-4bf5-91db-62c6ba717477",
-        "name" : "postgres",
+        "name" : "localhost",
         "type" : "FileKeyStore",
-        "certificateAlias" : "postgres",
+        "certificateAlias" : "localhost",
         "keyManagerFactoryAlgorithm" : "SunX509",
         "keyStoreType" : "jks",
         "password" : "${qpid.keystore_pass}",

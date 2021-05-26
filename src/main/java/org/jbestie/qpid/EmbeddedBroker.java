@@ -39,9 +39,12 @@ public class EmbeddedBroker {
         attributes.put("startupLoggedToSystemOut", true);
         int port = 5672;
         System.setProperty("qpid.amqp_port", String.valueOf(port));
-        System.setProperty("qpid.jdbc.password", "xxxx");
-        System.setProperty("qpid.keystore_pass", "xxxx");
-        System.setProperty("qpid.keystore_path", "path-to-keystore");
+        System.setProperty("qpid.plain.username", "guest");
+        System.setProperty("qpid.plain.password", "guest");
+        System.setProperty("qpid.jdbc.username", "user");
+        System.setProperty("qpid.jdbc.password", "password");
+        System.setProperty("qpid.keystore_pass", "Abcd1234");
+        System.setProperty("qpid.keystore_path", "C:/temp/localhost.jks");
         return attributes;
     }
 
