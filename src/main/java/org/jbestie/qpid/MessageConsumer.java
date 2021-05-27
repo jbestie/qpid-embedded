@@ -18,7 +18,7 @@ public class MessageConsumer {
 
     @JmsListener(destination = Const.JMS_QUEUE)
     public void processMsg(Message message) throws JMSException {
-        System.out.println("============= Received: " + message);
+        System.out.println("============= Received: " + message.getBody(String.class));
 
         Destination destination = message.getJMSReplyTo();
         jmsTemplate.convertAndSend(destination, message.getBody(String.class).toUpperCase());

@@ -31,18 +31,6 @@
         <maven-failsafe-plugin.version>2.22.2</maven-failsafe-plugin.version>
     </properties>
 
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-dependencies</artifactId>
-                <version>${spring-boot.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
-
     <dependencies>
         <dependency>
             <groupId>org.apache.qpid</groupId>
@@ -65,11 +53,6 @@
         <!-- AMQP protocol support is modular. Here we show support for 0-8/0-9 and 1.0. Support for 0-10 is excluded. -->
         <dependency>
             <groupId>org.apache.qpid</groupId>
-            <artifactId>qpid-broker-plugins-amqp-0-8-protocol</artifactId>
-            <version>${apache-qpid.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.qpid</groupId>
             <artifactId>qpid-broker-plugins-amqp-1-0-protocol</artifactId>
             <version>${apache-qpid.version}</version>
         </dependency>
@@ -82,27 +65,6 @@
         <dependency>
             <groupId>org.apache.qpid</groupId>
             <artifactId>qpid-broker-plugins-access-control</artifactId>
-            <version>${apache-qpid.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.qpid</groupId>
-            <artifactId>qpid-broker-plugins-management-amqp</artifactId>
-            <version>${apache-qpid.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.qpid</groupId>
-            <artifactId>qpid-broker-plugins-management-http</artifactId>
-            <version>${apache-qpid.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.qpid</groupId>
-            <artifactId>qpid-broker-plugins-amqp-msg-conv-0-8-to-0-10</artifactId>
-            <version>${apache-qpid.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.apache.qpid</groupId>
-            <artifactId>qpid-broker-plugins-amqp-msg-conv-0-8-to-1-0</artifactId>
             <version>${apache-qpid.version}</version>
         </dependency>
         <dependency>
@@ -139,11 +101,6 @@
             <artifactId>spring-jms</artifactId>
             <optional>true</optional>
         </dependency>
-        <dependency>
-            <groupId>com.h2database</groupId>
-            <artifactId>h2</artifactId>
-            <version>1.4.200</version>
-        </dependency>
         <!--util-->
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -152,13 +109,4 @@
         </dependency>
 
     </dependencies>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-        </plugins>
-    </build>
 </project>

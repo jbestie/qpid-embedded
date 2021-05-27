@@ -7,6 +7,7 @@ import javax.annotation.PreDestroy;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 @Component
 public class EmbeddedBroker {
@@ -25,10 +26,11 @@ public class EmbeddedBroker {
     }
 
     private Map<String, Object> createSystemConfig() {
+        System.setProperty("qpid.type.disabled:plugin.MANAGEMENT-HTTP", String.valueOf(Boolean.TRUE));
         Map<String, Object> attributes = new HashMap<>();
         URL initialConfig = EmbeddedBroker.class.getClassLoader().getResource(INITIAL_CONFIGURATION);
         attributes.put("type", "Memory");
-        attributes.put("initialConfigurationLocation", initialConfig.toExternalForm());
+        attributes.put("initialConfigurationLocation", Objects.requireNonNull(initialConfig).toExternalForm());
         attributes.put("startupLoggedToSystemOut", true);
         return attributes;
     }
