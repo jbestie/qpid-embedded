@@ -4,15 +4,8 @@
     "authenticationproviders": [
         {
             "secureOnlyMechanisms": [],
-            "name": "plain",
-            "type": "Plain",
-            "users": [
-                {
-                    "name": "${qpid.plain.username}",
-                    "type": "managed",
-                    "password": "${qpid.plain.password}"
-                }
-            ]
+            "name": "JWT",
+            "type": "JWT"
         }
     ],
     "brokerloggers": [
@@ -80,37 +73,10 @@
     ],
     "ports": [
         {
-            "name": "AMQP",
-            "port": "${qpid.amqp_port}",
-            "authenticationProvider": "plain",
-            "virtualhostaliases": [
-                {
-                    "name": "nameAlias",
-                    "type": "nameAlias"
-                },
-                {
-                    "name": "defaultAlias",
-                    "type": "defaultAlias"
-                },
-                {
-                    "name": "hostnameAlias",
-                    "type": "hostnameAlias"
-                }
-            ]
-        },
-        {
-            "name": "HTTP",
-            "port": "${qpid.http_port}",
-            "authenticationProvider": "plain",
-            "protocols": [
-                "HTTP"
-            ]
-        },
-        {
             "id" : "6a329be5-605c-4dac-b7d3-2a7d68a81786",
             "name" : "ssl",
             "type" : "AMQP",
-            "authenticationProvider" : "plain",
+            "authenticationProvider" : "JWT",
             "keyStore" : "localhost",
             "needClientAuth" : false,
             "port" : "5555",
@@ -161,7 +127,7 @@
             "lastUpdatedTime" : 1622019805061,
             "createdBy" : null,
             "createdTime" : 1622019804383,
-            "virtualHostInitialConfiguration" : "{\n  \"id\" : \"e3ed5648-fe94-4570-b0d4-d149b4e7ca4b\",\n  \"type\" : \"BDB\",\n  \"name\" : \"default\",\n  \"modelVersion\" : \"8.0\",\n  \"lastUpdatedTime\" : 1622019805014,\n  \"createdTime\" : 1622019805014,\n  \"exchanges\" : [ {\n    \"id\" : \"27f71638-cf09-43f3-a977-d81cefd6e5b4\",\n    \"name\" : \"amq.direct\",\n    \"type\" : \"direct\",\n    \"lastUpdatedTime\" : 1622019805014,\n    \"createdTime\" : 1622019805014\n  }, {\n    \"id\" : \"2ea351c0-6079-41c7-bffb-bb59d54a24ad\",\n    \"name\" : \"amq.fanout\",\n    \"type\" : \"fanout\",\n    \"lastUpdatedTime\" : 1622019805014,\n    \"createdTime\" : 1622019805014\n  }, {\n    \"id\" : \"cf7edcc1-7e1b-4132-88ac-93e63195c810\",\n    \"name\" : \"amq.match\",\n    \"type\" : \"headers\",\n    \"lastUpdatedTime\" : 1622019805014,\n    \"createdTime\" : 1622019805014\n  }, {\n    \"id\" : \"18d517f3-f177-4e01-9295-cc72a8dfd3ee\",\n    \"name\" : \"amq.topic\",\n    \"type\" : \"topic\",\n    \"lastUpdatedTime\" : 1622019805014,\n    \"createdTime\" : 1622019805014\n  } ],\n  \"queues\" : [ {\n    \"id\" : \"aeffc4be-440e-49d2-82f8-b05e8f224455\",\n    \"name\" : \"testqueue\",\n    \"type\" : \"standard\",\n    \"durable\" : true,\n    \"alternateBinding\" : null,\n    \"holdOnPublishEnabled\" : false,\n    \"owner\" : null,\n    \"lastUpdatedBy\" : \"guest\",\n    \"lastUpdatedTime\" : 1622034049435,\n    \"createdBy\" : \"guest\",\n    \"createdTime\" : 1622034049435\n  } ]\n}"
+            "virtualHostInitialConfiguration" : "{\n  \"id\" : \"e3ed5648-fe94-4570-b0d4-d149b4e7ca4b\",\n  \"type\" : \"BDB\",\n  \"name\" : \"default\",\n  \"modelVersion\" : \"8.0\",\n  \"queues\" : [ {\n    \"id\" : \"aeffc4be-440e-49d2-82f8-b05e8f224455\",\n    \"name\" : \"testqueue\",\n    \"type\" : \"standard\",\n    \"durable\" : true } ]\n}"
         }
     ],
     "keystores" : [{
@@ -178,11 +144,5 @@
         "lastUpdatedTime" : 1621867150620,
         "createdBy" : "guest",
         "createdTime" : 1621867150620
-    }],
-    "plugins": [
-        {
-            "type": "MANAGEMENT-HTTP",
-            "name": "httpManagement"
-        }
-    ]
+    }]
 }

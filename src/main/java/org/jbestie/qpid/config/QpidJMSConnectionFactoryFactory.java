@@ -18,10 +18,18 @@ package org.jbestie.qpid.config;
 
 import org.apache.qpid.jms.JmsConnectionFactory;
 import org.apache.qpid.jms.policy.JmsDefaultDeserializationPolicy;
+import org.jose4j.jws.AlgorithmIdentifiers;
+import org.jose4j.jws.JsonWebSignature;
+import org.jose4j.jwt.JwtClaims;
+import org.jose4j.keys.HmacKey;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
+
+import javax.jms.Connection;
+import java.nio.charset.StandardCharsets;
+import java.security.Key;
 
 /**
  * Builder of JmsConnectionFactory instances.
@@ -68,7 +76,24 @@ public class QpidJMSConnectionFactoryFactory {
             }
 
             if (StringUtils.hasLength(properties.getPassword())) {
-                factory.setPassword(properties.getPassword());
+                // Bearer token
+                JwtClaims jwtClaims = new JwtClaims();
+                jwtClaims.setGeneratedJwtId();
+                jwtClaims.setClaim("user", properties.getPassword());
+                jwtClaims.setIssuedAtToNow();
+                jwtClaims.setExpirationTimeMinutesInTheFuture(30);
+
+                String jwsPayload = jwtClaims.toJson();
+
+                JsonWebSignature jsonWebSignature = new JsonWebSignature();
+                jsonWebSignature.setPayload(jwsPayload);
+                jsonWebSignature.setAlgorithmHeaderValue(AlgorithmIdentifiers.HMAC_SHA256);
+
+                Key key = new HmacKey("123412341234123412341234123412341234".getBytes(StandardCharsets.UTF_8));
+                jsonWebSignature.setKey(key);
+                jsonWebSignature.sign();
+
+                factory.setPassword("Bearer " + jsonWebSignature.getCompactSerialization());
             }
 
             if (StringUtils.hasLength(properties.getClientId())) {

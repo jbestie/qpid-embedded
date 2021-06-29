@@ -1,0 +1,1 @@
+class=org.jbestie.qpid.sasl.JwtMechanismFactory

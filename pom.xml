@@ -47,9 +47,23 @@
         </dependency>
         <dependency>
             <groupId>org.apache.qpid</groupId>
+            <artifactId>qpid-broker-codegen</artifactId>
+            <version>${apache-qpid.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.qpid</groupId>
             <artifactId>qpid-jms-client</artifactId>
             <version>0.23.0</version>
-            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.bitbucket.b_c</groupId>
+            <artifactId>jose4j</artifactId>
+            <version>0.6.5</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.12.0</version>
         </dependency>
 
         <!-- Note that the below is qpid-broker-core and *not* qpid-broker. -->
