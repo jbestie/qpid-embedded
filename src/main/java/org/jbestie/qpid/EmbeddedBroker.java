@@ -73,10 +73,14 @@ public class EmbeddedBroker {
 
             private VirtualHost createVirtualHost(VirtualHostNode virtualHostNodeCustom) {
                 Map<String, Object> virtualHostParameters = new HashMap<>();
-                virtualHostParameters.put("id", UUID.fromString("e3ed5648-fe94-4570-b0d4-d149b4e7ca4b"));
-                virtualHostParameters.put("type", "BDB");
+                virtualHostParameters.put( "id", UUID.fromString("ea334eaf-6734-4726-bf6d-c031cc55f11c"));
                 virtualHostParameters.put("name", "localhost");
-                virtualHostParameters.put("modelVersion", "8.0");
+                virtualHostParameters.put("type", "JDBC");
+                virtualHostParameters.put("desiredState", "ACTIVE");
+                virtualHostParameters.put("connectionPoolType", "BONECP");
+                virtualHostParameters.put("connectionUrl", "jdbc:h2:file:./work/db;CIPHER=AES");
+                virtualHostParameters.put("password", "filepwd userpwd");
+                virtualHostParameters.put("username", "sa");
                 return (VirtualHost) virtualHostNodeCustom.createChild(VirtualHost.class, virtualHostParameters);
             }
 
